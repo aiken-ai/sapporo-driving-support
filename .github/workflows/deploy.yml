@@ -38,6 +38,19 @@ jobs:
       - name: Build site
         run: pnpm build
 
+      - name: Start production server
+        run: |
+          pnpm exec vinext start -H 127.0.0.1 -p 3000 > /tmp/vinext.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:3000/sapporo-driving-support/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Generate static homepage
+        run: curl -fsS http://127.0.0.1:3000/sapporo-driving-support/ -o dist/client/sapporo-driving-support/index.html
+
       - name: Add .nojekyll
         run: touch dist/client/sapporo-driving-support/.nojekyll
 
