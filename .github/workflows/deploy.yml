@@ -41,12 +41,12 @@ jobs:
         run: pnpm build
 
       - name: Add .nojekyll
-        run: touch dist/client/.nojekyll
+        run: touch dist/client/sapporo-driving-support/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client
+　　　　　　path: dist/client/sapporo-driving-support
 
   deploy:
     environment:
