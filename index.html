@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>札幌ドライビングサポート | 運転教習・ペーパードライバー講習</title>
+  <meta name="description" content="北海道札幌で運転教習、ペーパードライバー講習、冬道講習を提供。25年の教育実績を活かした安心の運転教育。">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif; color: #333; background: #f9f9f9; }
+    
+    /* Header */
+    header { background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header-content { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.2rem; font-weight: bold; }
+    .phone-btn { background: #dc2626; color: white; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: bold; }
+    
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%); color: white; padding: 3rem 1rem; text-align: center; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .hero-btn { background: #dc2626; color: white; padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; }
+    
+    /* Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    
+    /* Carousel */
+    .carousel { position: relative; margin: 2rem 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .carousel-item { display: none; text-align: center; padding: 2rem 1rem; }
+    .carousel-item.active { display: block; }
+    .carousel-item img { max-width: 100%; height: auto; max-height: 300px; border-radius: 8px; }
+    .carousel-nav { text-align: center; padding: 1rem; }
+    .carousel-nav button { background: #e5e7eb; border: none; padding: 0.5rem 1rem; margin: 0 0.5rem; border-radius: 4px; cursor: pointer; }
+    
+    /* Services */
+    .services { margin: 3rem 0; }
+    .services h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #1e40af; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .service-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+    .service-card h3 { color: #1e40af; margin-bottom: 0.5rem; }
+    .service-card p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+    
+    /* Pricing */
+    .pricing { background: white; margin: 3rem 0; padding: 2rem; border-radius: 8px; }
+    .pricing h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #1e40af; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .price-card { background: #f3f4f6; padding: 1.5rem; border-radius: 8px; text-align: center; border: 2px solid #e5e7eb; }
+    .price-card.featured { border-color: #1e40af; background: #eff6ff; }
+    .price-card h3 { color: #1e40af; margin-bottom: 0.5rem; }
+    .price-card .amount { font-size: 1.8rem; font-weight: bold; color: #1e40af; margin: 1rem 0; }
+    .price-card .description { font-size: 0.9rem; color: #666; }
+    
+    /* About */
+    .about { background: white; margin: 3rem 0; padding: 2rem; border-radius: 8px; }
+    .about h2 { font-size: 2rem; color: #1e40af; margin-bottom: 1rem; }
+    .about p { line-height: 1.8; color: #555; margin-bottom: 1rem; }
+    
+    /* Gallery */
+    .gallery { margin: 3rem 0; }
+    .gallery h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #1e40af; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .gallery-item { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .gallery-item img { width: 100%; height: 200px; object-fit: cover; }
+    .gallery-item h3 { padding: 1rem; color: #1e40af; }
+    
+    /* Contact */
+    .contact { background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%); color: white; padding: 2rem; text-align: center; border-radius: 8px; margin: 3rem 0; }
+    .contact h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+    .contact a { background: white; color: #1e40af; padding: 0.75rem 2rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 1rem; }
+    
+    /* Footer */
+    footer { background: #1f2937; color: white; padding: 2rem 1rem; text-align: center; margin-top: 3rem; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .header-content { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">札幌ドライビングサポート</div>
+      <a href="tel:0115322639" class="phone-btn">📞 011-532-2639</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <h1>免許を取ったら、行きたい場所へ。</h1>
+      <p>25年の教育実績を活かした、安心の運転教育</p>
+      <button class="hero-btn">お問い合わせ</button>
+    </div>
+  </div>
+
+  <!-- Carousel -->
+  <div class="container">
+    <div class="carousel">
+      <div class="carousel-item active">
+        <h3 style="margin-bottom: 1rem; color: #1e40af;">札幌大通り公園</h3>
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop" alt="札幌大通り公園">
+        <p style="margin-top: 1rem; color: #666;">都心に広がる美しい公園。運転技術を磨いた後は、ここで心を休めてください。</p>
+      </div>
+      <div class="carousel-item">
+        <h3 style="margin-bottom: 1rem; color: #1e40af;">美瑛の青い池</h3>
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop" alt="美瑛の青い池">
+        <p style="margin-top: 1rem; color: #666;">北海道を代表する絶景。安全運転で到達できます。</p>
+      </div>
+      <div class="carousel-item">
+        <h3 style="margin-bottom: 1rem; color: #1e40af;">羊ヶ丘公園クラーク像</h3>
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop" alt="羊ヶ丘公園">
+        <p style="margin-top: 1rem; color: #666;">青空の下、クラーク博士が見守ります。</p>
+      </div>
+      <div class="carousel-item">
+        <h3 style="margin-bottom: 1rem; color: #1e40af;">函館五稜郭</h3>
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop" alt="函館五稜郭">
+        <p style="margin-top: 1rem; color: #666;">歴史と文化が息づく街。運転技術で新しい世界が広がります。</p>
+      </div>
+      <div class="carousel-nav">
+        <button onclick="carousel(-1)">← 前へ</button>
+        <button onclick="carousel(1)">次へ →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="container">
+    <section class="services">
+      <h2>提供する講習</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <h3>普通免許取得</h3>
+          <p>技能教習に特化。学科試験場受験と組み合わせた最短取得プラン。</p>
+        </div>
+        <div class="service-card">
+          <h3>ペーパードライバー講習</h3>
+          <p>ブランク期間後の不安を解消。実際の生活ルートで実践練習。</p>
+        </div>
+        <div class="service-card">
+          <h3>冬道講習</h3>
+          <p>北海道の冬道走行を専門に。スリップ防止、安全な走行法を習得。</p>
+        </div>
+        <div class="service-card">
+          <h3>企業講習</h3>
+          <p>法人向けの安全運転教育。社員の運転スキル向上を支援します。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Pricing -->
+  <div class="container">
+    <section class="pricing">
+      <h2>料金表</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>ペーパードライバー お試し</h3>
+          <div class="amount">5,000円</div>
+          <p class="description">50分<br>初心者向け</p>
+        </div>
+        <div class="price-card featured">
+          <h3>ペーパードライバー 標準</h3>
+          <div class="amount">8,500円</div>
+          <p class="description">90分<br>初回推奨</p>
+        </div>
+        <div class="price-card">
+          <h3>ペーパードライバー プレミアム</h3>
+          <div class="amount">15,500円</div>
+          <p class="description">180分<br>充実プラン</p>
+        </div>
+        <div class="price-card">
+          <h3>普通免許AT</h3>
+          <div class="amount">250,000円</div>
+          <p class="description">技能教習<br>最短取得</p>
+        </div>
+        <div class="price-card">
+          <h3>普通二種AT</h3>
+          <div class="amount">265,000円</div>
+          <p class="description">タクシー運転対応<br>専門教習</p>
+        </div>
+        <div class="price-card">
+          <h3>企業講習</h3>
+          <div class="amount">要相談</div>
+          <p class="description">法人向け<br>カスタマイズ可</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- About -->
+  <div class="container">
+    <section class="about">
+      <h2>札幌ドライビングサポートについて</h2>
+      <p><strong>事業理念：地域の交通安全教育センター</strong></p>
+      <p>免許取得だけでなく、子どもから高齢者までの安全運転教育を通じて、地域貢献することを目指しています。</p>
+      <p><strong>特徴</strong></p>
+      <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+        <li>家族・友達と一緒に教習可能</li>
+        <li>送迎無料（札幌駅・中央区・手稲試験場など）</li>
+        <li>補習料金無料</li>
+        <li>褒める教習で自信を育成</li>
+        <li>冬道運転を専門とする講師</li>
+        <li>管理者自ら指導</li>
+      </ul>
+      <p><strong>教育実績</strong><br>
+      25年以上の運転教育経験、全国学科大会出場、北道技能大会2位受賞</p>
+    </section>
+  </div>
+
+  <!-- Gallery -->
+  <div class="container">
+    <section class="gallery">
+      <h2>北海道の美しさを運転で感じて</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" alt="札幌風景">
+          <h3>札幌の四季</h3>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" alt="北海道風景">
+          <h3>大自然</h3>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" alt="冬道">
+          <h3>冬道走行</h3>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" alt="観光地">
+          <h3>観光スポット</h3>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact -->
+  <div class="container">
+    <section class="contact">
+      <h2>今すぐお問い合わせ</h2>
+      <p>運転に関する不安なこと、何でもお気軽にご相談ください。</p>
+      <a href="tel:0115322639">📞 011-532-2639 に電話する</a>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 札幌ドライビングサポート. All rights reserved.</p>
+    <p>〒060-0061 北海道札幌市中央区南一条西2丁目</p>
+  </footer>
+
+  <script>
+    let carouselIndex = 1;
+    
+    function carousel(n) {
+      const items = document.querySelectorAll('.carousel-item');
+      carouselIndex += n;
+      if (carouselIndex > items.length) carouselIndex = 1;
+      if (carouselIndex < 1) carouselIndex = items.length;
+      items.forEach(item => item.classList.remove('active'));
+      items[carouselIndex - 1].classList.add('active');
+    }
+  </script>
+</body>
+</html>
