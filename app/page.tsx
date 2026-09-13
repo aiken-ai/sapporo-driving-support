@@ -32,38 +32,57 @@ const paperPrices = [
 export default function Home() {
   return (
     <main>
-      {/* HERO */}
+      {/* HERO with Background Image */}
       <section
         style={{
-          minHeight: "88vh",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
           color: "white",
-          padding: "60px 20px",
-          background:
-            "linear-gradient(180deg, rgba(0,120,210,.88), rgba(0,70,150,.92)), linear-gradient(135deg,#58bdf5,#0068b7)",
+          padding: "80px 20px 60px",
+          backgroundImage: "url('/IMG_0173.jpeg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          position: "relative",
         }}
       >
-        <div style={{ maxWidth: 900 }}>
+        {/* Overlay for better text readability */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "linear-gradient(135deg, rgba(0,68,183,0.75), rgba(0,104,183,0.70)), linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1))",
+            zIndex: 1,
+          }}
+        />
+
+        <div style={{ maxWidth: 1000, position: "relative", zIndex: 2 }}>
           <p
             style={{
-              fontSize: 16,
-              letterSpacing: 3,
-              marginBottom: 18,
-              fontWeight: 700,
+              fontSize: "clamp(13px, 3vw, 16px)",
+              letterSpacing: 4,
+              marginBottom: 20,
+              fontWeight: 900,
+              textTransform: "uppercase",
+              opacity: 0.9,
             }}
           >
-            札幌ドライビングサポート
+            Sapporo Driving Support
           </p>
 
           <h1
             style={{
-              fontSize: "clamp(34px, 8vw, 70px)",
-              lineHeight: 1.25,
-              margin: 0,
-              fontWeight: 800,
+              fontSize: "clamp(48px, 10vw, 90px)",
+              lineHeight: 1.1,
+              margin: "0 0 20px 0",
+              fontWeight: 900,
+              letterSpacing: -2,
             }}
           >
             免許を取ったら、
@@ -71,55 +90,85 @@ export default function Home() {
             行きたい場所。
           </h1>
 
+          <div
+            style={{
+              height: 4,
+              width: 80,
+              background: "#FFD700",
+              margin: "25px auto",
+              borderRadius: 2,
+            }}
+          />
+
           <p
             style={{
-              fontSize: "clamp(17px, 4vw, 24px)",
-              lineHeight: 1.8,
-              marginTop: 28,
-              fontWeight: 600,
+              fontSize: "clamp(18px, 4vw, 26px)",
+              lineHeight: 1.6,
+              marginTop: 20,
+              fontWeight: 500,
+              opacity: 0.95,
             }}
           >
-            札幌で、一人ひとりに合わせた
-            <br />
-            運転サポートを。
+            安心と信頼で、安全な運転人生をスタート。
           </p>
 
           <div
             style={{
               display: "flex",
-              gap: 12,
+              gap: 16,
               justifyContent: "center",
               flexWrap: "wrap",
-              marginTop: 35,
+              marginTop: 50,
             }}
           >
             <a
-              href="#price"
+              href="#campaign"
               style={{
-                background: "white",
-                color: "#0068b7",
-                padding: "15px 28px",
-                borderRadius: 999,
-                fontWeight: 800,
+                background: "#FFD700",
+                color: "#003060",
+                padding: "18px 40px",
+                borderRadius: 50,
+                fontWeight: 900,
                 textDecoration: "none",
+                fontSize: 16,
+                boxShadow: "0 8px 20px rgba(255,215,0,0.3)",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 12px 30px rgba(255,215,0,0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(255,215,0,0.3)";
               }}
             >
-              料金を見る
+              料金をチェック
             </a>
 
             <a
               href="#contact"
               style={{
-                background: "#0060a8",
-                color: "white",
-                border: "2px solid white",
-                padding: "13px 28px",
-                borderRadius: 999,
-                fontWeight: 800,
+                background: "white",
+                color: "#003060",
+                padding: "18px 40px",
+                borderRadius: 50,
+                fontWeight: 900,
                 textDecoration: "none",
+                fontSize: 16,
+                boxShadow: "0 8px 20px rgba(255,255,255,0.2)",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow = "0 12px 30px rgba(255,255,255,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(255,255,255,0.2)";
               }}
             >
-              お申し込み
+              無料相談
             </a>
           </div>
         </div>
@@ -127,103 +176,211 @@ export default function Home() {
 
       {/* CAMPAIGN */}
       <section
+        id="campaign"
         style={{
-          padding: "50px 20px",
-          background: "white",
+          padding: "80px 20px",
+          background: "#f8f9fa",
         }}
       >
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <h2
+            style={{
+              fontSize: "clamp(28px, 6vw, 48px)",
+              textAlign: "center",
+              marginBottom: 60,
+              fontWeight: 900,
+              color: "#003060",
+            }}
+          >
+            キャンペーン
+          </h2>
+
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-              gap: 20,
+              gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
+              gap: 25,
             }}
           >
             {/* 普通免許 */}
             <div
               style={{
-                padding: 35,
-                borderRadius: 20,
-                background: "linear-gradient(135deg, #0068b7 0%, #004a8f 100%)",
+                padding: 40,
+                borderRadius: 24,
+                background: "linear-gradient(135deg, #003060 0%, #0068b7 100%)",
                 color: "white",
                 textAlign: "center",
-                boxShadow: "0 4px 15px rgba(0,104,183,0.2)",
+                boxShadow: "0 15px 40px rgba(0,48,96,0.2)",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
               <div
                 style={{
-                  fontSize: 16,
-                  fontWeight: 800,
-                  color: "#fff",
-                  marginBottom: 12,
-                  backgroundColor: "rgba(255,255,255,0.2)",
-                  padding: "8px 14px",
-                  borderRadius: 8,
-                  display: "inline-block",
+                  position: "absolute",
+                  top: -50,
+                  right: -50,
+                  width: 200,
+                  height: 200,
+                  background: "rgba(255,215,0,0.1)",
+                  borderRadius: "50%",
+                }}
+              />
+
+              <div
+                style={{
+                  fontSize: 14,
+                  fontWeight: 900,
+                  color: "#FFD700",
+                  marginBottom: 15,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  position: "relative",
+                  zIndex: 1,
                 }}
               >
-                ★ 月5名限定 ★
+                ⭐ 限定 5名 / 月 ⭐
               </div>
 
-              <h3 style={{ fontSize: 28, fontWeight: 800, margin: "15px 0" }}>
-                普通免許取得サポート
+              <h3
+                style={{
+                  fontSize: 28,
+                  fontWeight: 900,
+                  margin: "15px 0 25px 0",
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                普通免許
+                <br />
+                取得サポート
               </h3>
 
-              <div style={{ fontSize: 48, fontWeight: 800, margin: "20px 0" }}>
-                250,000円
-              </div>
-
-              <div style={{ fontSize: 16, opacity: 0.95, marginBottom: 20 }}>
-                （税込）
+              <div
+                style={{
+                  fontSize: 56,
+                  fontWeight: 900,
+                  margin: "25px 0",
+                  color: "#FFD700",
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                ¥250K
               </div>
 
               <div
                 style={{
                   background: "rgba(255,255,255,0.15)",
-                  padding: 15,
-                  borderRadius: 12,
+                  padding: 16,
+                  borderRadius: 14,
                   marginBottom: 20,
-                  fontSize: 15,
-                  fontWeight: 700,
+                  fontSize: 16,
+                  fontWeight: 800,
+                  position: "relative",
+                  zIndex: 1,
                 }}
               >
-                補修・延長・追加料金無料
+                補修・延長・追加料金
+                <br />
+                すべて無料
               </div>
 
-              <p style={{ fontSize: 15, lineHeight: 1.8, marginBottom: 0 }}>
-                できるだけ安く、でもしっかり合格したい方へ
+              <p
+                style={{
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  marginBottom: 0,
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                確実に合格できる運転技術を身につけたい全ての方へ
               </p>
             </div>
 
             {/* ペーパードライバー */}
             <div
               style={{
-                padding: 35,
-                borderRadius: 20,
-                background: "#f0f8ff",
-                border: "3px solid #0068b7",
+                padding: 40,
+                borderRadius: 24,
+                background: "white",
+                border: "3px solid #FFD700",
                 textAlign: "center",
+                boxShadow: "0 15px 40px rgba(255,215,0,0.1)",
               }}
             >
-              <h3 style={{ fontSize: 28, fontWeight: 800, margin: "0 0 15px 0", color: "#0068b7" }}>
-                ペーパードライバー
+              <div
+                style={{
+                  fontSize: 14,
+                  fontWeight: 900,
+                  color: "#FFD700",
+                  marginBottom: 15,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                }}
+              >
+                🚗 お試しプラン
+              </div>
+
+              <h3
+                style={{
+                  fontSize: 28,
+                  fontWeight: 900,
+                  margin: "15px 0",
+                  color: "#003060",
+                }}
+              >
+                ペーパー
+                <br />
+                ドライバー
               </h3>
 
-              <div style={{ fontSize: 24, fontWeight: 800, color: "#0068b7", marginBottom: 15 }}>
-                お試し 50分
+              <div
+                style={{
+                  fontSize: 18,
+                  fontWeight: 800,
+                  color: "#0068b7",
+                  marginBottom: 15,
+                }}
+              >
+                50分体験
               </div>
 
-              <div style={{ fontSize: 40, fontWeight: 800, color: "#0068b7", margin: "15px 0" }}>
-                5,000円
+              <div
+                style={{
+                  fontSize: 56,
+                  fontWeight: 900,
+                  color: "#FFD700",
+                  margin: "20px 0",
+                }}
+              >
+                ¥5K
               </div>
 
-              <div style={{ fontSize: 14, color: "#555", marginBottom: 20 }}>
-                （税込）
+              <div
+                style={{
+                  background: "#f0f8ff",
+                  padding: 16,
+                  borderRadius: 14,
+                  marginBottom: 20,
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: "#003060",
+                }}
+              >
+                久しぶりの運転、得意な道、苦手な道路も安心
               </div>
 
-              <p style={{ fontSize: 15, lineHeight: 1.8, marginBottom: 0, color: "#555" }}>
-                まずはお試しプランから始めてみませんか？
+              <p
+                style={{
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  marginBottom: 0,
+                  color: "#555",
+                }}
+              >
+                まずはお気軽にお試しください
               </p>
             </div>
           </div>
@@ -233,38 +390,98 @@ export default function Home() {
       {/* CONCEPT */}
       <section
         style={{
-          padding: "70px 20px",
-          background: "#f4faff",
+          padding: "100px 20px",
+          background: "white",
           textAlign: "center",
         }}
       >
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <p style={{ color: "#0075c9", fontWeight: 800 }}>CONCEPT</p>
-
-          <h2 style={{ fontSize: "clamp(28px,6vw,44px)", marginBottom: 25 }}>
-            教習所とは違う、
-            <br />
-            もっと身近な運転サポート。
-          </h2>
-
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <p
             style={{
-              lineHeight: 2,
-              fontSize: 17,
-              color: "#444",
+              color: "#0068b7",
+              fontWeight: 900,
+              fontSize: 14,
+              textTransform: "uppercase",
+              letterSpacing: 3,
+              marginBottom: 20,
             }}
           >
-            札幌ドライビングサポートは、
-            <br />
-            「運転できるようになりたい」という気持ちに
-            <br />
-            一人ひとり寄り添います。
-            <br />
-            <br />
-            必要な練習を必要なだけ。
-            <br />
-            分からないところは、分かるまで。
+            Our Concept
           </p>
+
+          <h2
+            style={{
+              fontSize: "clamp(36px, 8vw, 56px)",
+              marginBottom: 40,
+              fontWeight: 900,
+              lineHeight: 1.2,
+              color: "#003060",
+            }}
+          >
+            安全に、自信を持って、
+            <br />
+            運転できる人を育てる。
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: 30,
+              marginTop: 50,
+            }}
+          >
+            {[
+              {
+                title: "個別対応",
+                desc: "一人ひとりの運転レベルと目標に合わせたカスタマイズ指導",
+              },
+              {
+                title: "必要な分だけ",
+                desc: "無駄な追加料金なし。確実な合格まで何度でも練習",
+              },
+              {
+                title: "27年の経験",
+                desc: "指導員歴27年。さまざまな車種と状況での実践指導",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                style={{
+                  padding: 30,
+                  background: "#f8f9fa",
+                  borderRadius: 18,
+                  border: "2px solid #e8eef5",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 36,
+                    fontWeight: 900,
+                    color: "#FFD700",
+                    marginBottom: 15,
+                  }}
+                >
+                  {idx === 0 && "👤"}
+                  {idx === 1 && "✓"}
+                  {idx === 2 && "⚡"}
+                </div>
+                <h3
+                  style={{
+                    fontSize: 22,
+                    fontWeight: 900,
+                    color: "#003060",
+                    marginBottom: 10,
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ color: "#555", lineHeight: 1.7, marginBottom: 0 }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -272,14 +489,31 @@ export default function Home() {
       <section
         id="services"
         style={{
-          padding: "70px 20px",
-          background: "white",
+          padding: "100px 20px",
+          background: "#f8f9fa",
         }}
       >
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <p style={{ color: "#0075c9", fontWeight: 800 }}>SERVICE</p>
-            <h2 style={{ fontSize: "clamp(28px,6vw,42px)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <p
+              style={{
+                color: "#0068b7",
+                fontWeight: 900,
+                fontSize: 14,
+                textTransform: "uppercase",
+                letterSpacing: 3,
+                marginBottom: 20,
+              }}
+            >
+              Services
+            </p>
+            <h2
+              style={{
+                fontSize: "clamp(36px, 8vw, 52px)",
+                fontWeight: 900,
+                color: "#003060",
+              }}
+            >
               サービス
             </h2>
           </div>
@@ -287,25 +521,50 @@ export default function Home() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
-              gap: 18,
+              gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
+              gap: 24,
             }}
           >
-            {services.map((service) => (
+            {services.map((service, idx) => (
               <div
                 key={service.title}
                 style={{
-                  padding: 28,
-                  borderRadius: 18,
-                  background: "#f4faff",
-                  border: "1px solid #d9edf9",
+                  padding: 35,
+                  borderRadius: 20,
+                  background: "white",
+                  border: "none",
+                  boxShadow: "0 8px 24px rgba(0,48,96,0.08)",
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,48,96,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,48,96,0.08)";
                 }}
               >
+                <div
+                  style={{
+                    fontSize: 40,
+                    marginBottom: 15,
+                  }}
+                >
+                  {idx === 0 && "🎯"}
+                  {idx === 1 && "🚗"}
+                  {idx === 2 && "🏢"}
+                  {idx === 3 && "🏍️"}
+                  {idx === 4 && "⚙️"}
+                </div>
+
                 <h3
                   style={{
-                    color: "#006eb8",
-                    fontSize: 21,
+                    color: "#003060",
+                    fontSize: 20,
                     marginTop: 0,
+                    fontWeight: 900,
                   }}
                 >
                   {service.title}
@@ -313,9 +572,10 @@ export default function Home() {
 
                 <p
                   style={{
-                    lineHeight: 1.9,
-                    color: "#555",
+                    lineHeight: 1.8,
+                    color: "#666",
                     marginBottom: 0,
+                    fontSize: 15,
                   }}
                 >
                   {service.text}
@@ -430,66 +690,121 @@ export default function Home() {
       {/* ONE SHOT */}
       <section
         style={{
-          padding: "70px 20px",
-          background: "#eef8ff",
+          padding: "100px 20px",
+          background: "white",
         }}
       >
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" }}>
-            <p style={{ color: "#0075c9", fontWeight: 800 }}>
-              ONE-SHOT EXAM
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <p
+              style={{
+                color: "#0068b7",
+                fontWeight: 900,
+                fontSize: 14,
+                textTransform: "uppercase",
+                letterSpacing: 3,
+                marginBottom: 20,
+              }}
+            >
+              One-Shot Exam Support
             </p>
 
-            <h2 style={{ fontSize: "clamp(28px,6vw,42px)" }}>
-              一発試験を、
+            <h2
+              style={{
+                fontSize: "clamp(36px, 8vw, 52px)",
+                fontWeight: 900,
+                color: "#003060",
+              }}
+            >
+              一発試験
               <br />
-              本気でサポート。
+              完全サポート
             </h2>
           </div>
 
           <div
             style={{
-              marginTop: 35,
+              marginTop: 50,
               display: "grid",
-              gap: 15,
+              gap: 20,
             }}
           >
             {[
-              ["第一段階", "仮免許試験まで", "15回以上の練習を基本にサポート"],
-              ["第二段階", "本免許試験まで", "送迎・路上・試験コースを練習"],
-              ["動画振り返り", "iPadを活用", "自分の運転を映像で確認"],
-            ].map(([title, subtitle, text]) => (
+              {
+                num: "01",
+                title: "第一段階",
+                subtitle: "仮免許試験まで",
+                text: "15回以上の練習を基本。仮免許試験合格まで丁寧にサポート。",
+              },
+              {
+                num: "02",
+                title: "第二段階",
+                subtitle: "本免許試験まで",
+                text: "送迎・路上・試験コースを練習。本試験での確実な合格を目指す。",
+              },
+              {
+                num: "03",
+                title: "動画振り返り",
+                subtitle: "iPadで即座に確認",
+                text: "自分の運転を映像で確認。運転のクセや改善点を明確にします。",
+              },
+            ].map((item) => (
               <div
-                key={title}
+                key={item.num}
                 style={{
-                  background: "white",
-                  padding: 24,
-                  borderRadius: 16,
-                  borderLeft: "5px solid #0075c9",
+                  background: "#f8f9fa",
+                  padding: 30,
+                  borderRadius: 18,
+                  borderLeft: "6px solid #FFD700",
+                  display: "flex",
+                  gap: 20,
                 }}
               >
-                <strong style={{ fontSize: 21 }}>{title}</strong>
-                <div style={{ color: "#0075c9", fontWeight: 700 }}>
-                  {subtitle}
+                <div
+                  style={{
+                    fontSize: 32,
+                    fontWeight: 900,
+                    color: "#FFD700",
+                    minWidth: 50,
+                  }}
+                >
+                  {item.num}
                 </div>
-                <p style={{ marginBottom: 0, color: "#555" }}>{text}</p>
+
+                <div>
+                  <strong style={{ fontSize: 22, color: "#003060" }}>
+                    {item.title}
+                  </strong>
+                  <div
+                    style={{
+                      color: "#0068b7",
+                      fontWeight: 700,
+                      marginBottom: 8,
+                      fontSize: 15,
+                    }}
+                  >
+                    {item.subtitle}
+                  </div>
+                  <p style={{ marginBottom: 0, color: "#666" }}>{item.text}</p>
+                </div>
               </div>
             ))}
           </div>
 
           <div
             style={{
-              marginTop: 30,
-              padding: 25,
-              background: "#006eb8",
+              marginTop: 40,
+              padding: 30,
+              background: "linear-gradient(135deg, #003060, #0068b7)",
               color: "white",
-              borderRadius: 18,
+              borderRadius: 20,
               textAlign: "center",
-              fontWeight: 800,
-              fontSize: 20,
+              fontWeight: 900,
+              fontSize: 22,
+              boxShadow: "0 10px 30px rgba(0,48,96,0.2)",
             }}
           >
-            補修・追加料金はかかりません。
+            ✓ 補修・延長・追加料金 一切かかりません
           </div>
         </div>
       </section>
@@ -498,37 +813,57 @@ export default function Home() {
       <section
         id="price"
         style={{
-          padding: "70px 20px",
-          background: "white",
+          padding: "100px 20px",
+          background: "#f8f9fa",
         }}
       >
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 35 }}>
-            <p style={{ color: "#0075c9", fontWeight: 800 }}>PRICE</p>
-            <h2 style={{ fontSize: "clamp(28px,6vw,42px)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <p
+              style={{
+                color: "#0068b7",
+                fontWeight: 900,
+                fontSize: 14,
+                textTransform: "uppercase",
+                letterSpacing: 3,
+                marginBottom: 20,
+              }}
+            >
+              Pricing
+            </p>
+            <h2
+              style={{
+                fontSize: "clamp(36px, 8vw, 52px)",
+                fontWeight: 900,
+                color: "#003060",
+              }}
+            >
               料金
             </h2>
           </div>
 
           <div
             style={{
-              background: "#f4faff",
+              background: "white",
               borderRadius: 20,
-              padding: 25,
-              border: "2px solid #d7ecf9",
+              padding: 35,
+              boxShadow: "0 10px 30px rgba(0,48,96,0.08)",
+              marginBottom: 30,
             }}
           >
             <h3
               style={{
                 textAlign: "center",
-                color: "#006eb8",
-                fontSize: 25,
+                color: "#003060",
+                fontSize: 28,
+                fontWeight: 900,
+                marginTop: 0,
               }}
             >
               ペーパードライバー講習
             </h3>
 
-            <div style={{ display: "grid", gap: 10 }}>
+            <div style={{ display: "grid", gap: 12, marginTop: 25 }}>
               {paperPrices.map(([name, price]) => (
                 <div
                   key={name}
@@ -536,13 +871,15 @@ export default function Home() {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    padding: "16px 14px",
-                    background: "white",
-                    borderRadius: 10,
+                    padding: "18px 20px",
+                    background: "#f8f9fa",
+                    borderRadius: 12,
                   }}
                 >
-                  <span>{name}</span>
-                  <strong style={{ color: "#006eb8", fontSize: 19 }}>
+                  <span style={{ fontWeight: 600, color: "#333" }}>
+                    {name}
+                  </span>
+                  <strong style={{ color: "#0068b7", fontSize: 20 }}>
                     {price}
                   </strong>
                 </div>
@@ -552,25 +889,28 @@ export default function Home() {
 
           <div
             style={{
-              marginTop: 35,
-              padding: 25,
+              marginTop: 30,
+              padding: 35,
               borderRadius: 20,
-              background: "#eef8ff",
-              border: "2px solid #d7ecf9",
+              background: "white",
+              boxShadow: "0 10px 30px rgba(0,48,96,0.08)",
             }}
           >
             <h3
               style={{
                 textAlign: "center",
-                color: "#006eb8",
-                fontSize: 25,
+                color: "#003060",
+                fontSize: 28,
+                fontWeight: 900,
                 marginTop: 0,
               }}
             >
-              普通免許取得サポート（一発試験）
+              普通免許取得サポート
+              <br />
+              （一発試験）
             </h3>
 
-            <div style={{ display: "grid", gap: 10 }}>
+            <div style={{ display: "grid", gap: 12, marginTop: 25 }}>
               {[
                 ["一般", "250,000円"],
                 ["学生", "242,000円"],
@@ -582,13 +922,15 @@ export default function Home() {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    padding: "16px 14px",
-                    background: "white",
-                    borderRadius: 10,
+                    padding: "18px 20px",
+                    background: "#f8f9fa",
+                    borderRadius: 12,
                   }}
                 >
-                  <span>{plan}</span>
-                  <strong style={{ color: "#006eb8", fontSize: 19 }}>
+                  <span style={{ fontWeight: 600, color: "#333" }}>
+                    {plan}
+                  </span>
+                  <strong style={{ color: "#0068b7", fontSize: 20 }}>
                     {price}
                   </strong>
                 </div>
@@ -598,14 +940,14 @@ export default function Home() {
             <p
               style={{
                 textAlign: "center",
-                color: "#555",
+                color: "#0068b7",
                 fontSize: 15,
-                marginTop: 15,
+                marginTop: 20,
                 marginBottom: 0,
-                fontWeight: 700,
+                fontWeight: 900,
               }}
             >
-              ※ 補修・延長・追加料金無料
+              ✓ 補修・延長・追加料金無料
             </p>
           </div>
         </div>
@@ -614,57 +956,86 @@ export default function Home() {
       {/* FEATURE */}
       <section
         style={{
-          padding: "70px 20px",
-          background: "#f4faff",
+          padding: "100px 20px",
+          background: "white",
         }}
       >
-        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ color: "#0075c9", fontWeight: 800 }}>FEATURE</p>
+        <div style={{ maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
+          <p
+            style={{
+              color: "#0068b7",
+              fontWeight: 900,
+              fontSize: 14,
+              textTransform: "uppercase",
+              letterSpacing: 3,
+              marginBottom: 20,
+            }}
+          >
+            Feature
+          </p>
 
-          <h2 style={{ fontSize: "clamp(28px,6vw,42px)" }}>
-            運転を「見える化」する。
+          <h2
+            style={{
+              fontSize: "clamp(36px, 8vw, 52px)",
+              fontWeight: 900,
+              color: "#003060",
+              marginBottom: 20,
+            }}
+          >
+            運転を「見える化」
           </h2>
 
           <p
             style={{
-              fontSize: 17,
-              lineHeight: 2,
-              color: "#444",
+              fontSize: 18,
+              lineHeight: 1.8,
+              color: "#666",
+              marginBottom: 50,
             }}
           >
-            教習中の運転を動画で記録。
+            教習中の運転を動画で記録。iPadを使って一緒に振り返り、
             <br />
-            iPadを使って一緒に振り返り、
-            <br />
-            「なぜうまくいかなかったのか」を
-            <br />
-            分かりやすく確認します。
+            「何が足りなかったのか」を分かりやすく確認します。
           </p>
 
           <div
             style={{
-              marginTop: 30,
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-              gap: 15,
+              gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
+              gap: 20,
             }}
           >
             {[
-              "動画で運転を確認",
-              "iPadで分かりやすく解説",
-              "運転のクセを把握",
+              { icon: "🎬", title: "動画で運転を確認", desc: "毎回の教習を記録" },
+              { icon: "📱", title: "iPadで解説", desc: "その場で分かりやすく" },
+              { icon: "🎯", title: "クセを把握", desc: "改善点を明確に" },
             ].map((item) => (
               <div
-                key={item}
+                key={item.title}
                 style={{
-                  background: "white",
-                  padding: 25,
-                  borderRadius: 16,
+                  background: "#f8f9fa",
+                  padding: 30,
+                  borderRadius: 18,
                   fontWeight: 700,
-                  color: "#006eb8",
+                  boxShadow: "0 8px 24px rgba(0,48,96,0.08)",
                 }}
               >
-                ✓ {item}
+                <div style={{ fontSize: 40, marginBottom: 15 }}>
+                  {item.icon}
+                </div>
+                <h3
+                  style={{
+                    color: "#003060",
+                    fontSize: 18,
+                    marginTop: 0,
+                    marginBottom: 8,
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ color: "#666", marginBottom: 0, fontSize: 14 }}>
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -674,66 +1045,111 @@ export default function Home() {
       {/* PROFILE */}
       <section
         style={{
-          padding: "70px 20px",
-          background: "white",
+          padding: "100px 20px",
+          background: "#f8f9fa",
         }}
       >
-        <div style={{ maxWidth: 850, margin: "0 auto" }}>
-          <div style={{ textAlign: "center" }}>
-            <p style={{ color: "#0075c9", fontWeight: 800 }}>PROFILE</p>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 50 }}>
+            <p
+              style={{
+                color: "#0068b7",
+                fontWeight: 900,
+                fontSize: 14,
+                textTransform: "uppercase",
+                letterSpacing: 3,
+                marginBottom: 20,
+              }}
+            >
+              Profile
+            </p>
 
-            <h2 style={{ fontSize: "clamp(28px,6vw,42px)" }}>
-              指導員歴27年。
+            <h2
+              style={{
+                fontSize: "clamp(36px, 8vw, 52px)",
+                fontWeight: 900,
+                color: "#003060",
+              }}
+            >
+              指導員歴 27年
             </h2>
           </div>
 
           <div
             style={{
-              marginTop: 30,
-              padding: 30,
-              borderRadius: 20,
-              background: "#f4faff",
-              lineHeight: 2,
-              color: "#444",
+              marginTop: 40,
+              padding: 40,
+              borderRadius: 24,
+              background: "white",
+              boxShadow: "0 10px 30px rgba(0,48,96,0.08)",
             }}
           >
-            <p style={{ marginTop: 0 }}>
-              <strong>自動車教習指導員歴27年</strong>
+            <p
+              style={{
+                marginTop: 0,
+                fontSize: 18,
+                lineHeight: 1.8,
+                color: "#444",
+              }}
+            >
+              <strong style={{ fontSize: 24, color: "#003060" }}>
+                北海道最大規模の指定自動車学校
+              </strong>
               <br />
-              <br />
-              北海道最大規模の指定自動車学校での副管理者経験を活かし、
+              副管理者として25年以上の経験を持つ指導員が、
               一人ひとりの運転レベルや目的に合わせた指導を行います。
             </p>
 
-            <p>
-              <strong>指導経験：</strong>
-              <br />
-              普通車、準中型、普通二種、普通二輪、大型二輪など
-              さまざまな車種の指導を経験。
-              <br />
-              <br />
-              <strong>その他の経験：</strong>
-              <br />
-              • 技能検定員経験
-              <br />
-              • 高齢者講習
-              <br />
-              • 初心者講習
-              <br />
-              • 取り消し処分者講習
-              <br />
-              • 応急救護指導員
-              <br />
-              • 適性検査指導員
-            </p>
+            <div
+              style={{
+                marginTop: 30,
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gap: 20,
+              }}
+            >
+              {[
+                ["普通車・準中型", "🚗"],
+                ["普通二輪・大型二輪", "🏍️"],
+                ["技能検定員", "✓"],
+                ["高齢者講習", "👴"],
+                ["初心者講習", "🎓"],
+                ["応急救護指導員", "🏥"],
+              ].map(([text, icon]) => (
+                <div
+                  key={text}
+                  style={{
+                    padding: 18,
+                    background: "#f8f9fa",
+                    borderRadius: 14,
+                    textAlign: "center",
+                  }}
+                >
+                  <div style={{ fontSize: 28, marginBottom: 8 }}>
+                    {icon}
+                  </div>
+                  <p style={{ margin: 0, color: "#333", fontWeight: 700 }}>
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
 
-            <p style={{ marginBottom: 0, fontWeight: 700, color: "#0075c9" }}>
-              「免許を取ること」だけではなく、
-              <br />
-              「免許を取った後も安全に運転できること」
-              <br />
-              を大切にしています。
-            </p>
+            <div
+              style={{
+                marginTop: 30,
+                padding: 25,
+                background: "linear-gradient(135deg, #003060, #0068b7)",
+                borderRadius: 18,
+                color: "white",
+                textAlign: "center",
+                fontWeight: 700,
+                fontSize: 16,
+              }}
+            >
+              「免許を取ること」だけでなく、<br />
+              「免許を取った後も安全に運転できること」を目指します。
+            </div>
           </div>
         </div>
       </section>
@@ -741,19 +1157,36 @@ export default function Home() {
       {/* FAQ */}
       <section
         style={{
-          padding: "70px 20px",
-          background: "#f4faff",
+          padding: "100px 20px",
+          background: "white",
         }}
       >
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <p style={{ color: "#0075c9", fontWeight: 800 }}>FAQ</p>
-            <h2 style={{ fontSize: "clamp(28px,6vw,42px)" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 60 }}>
+            <p
+              style={{
+                color: "#0068b7",
+                fontWeight: 900,
+                fontSize: 14,
+                textTransform: "uppercase",
+                letterSpacing: 3,
+                marginBottom: 20,
+              }}
+            >
+              FAQ
+            </p>
+            <h2
+              style={{
+                fontSize: "clamp(36px, 8vw, 52px)",
+                fontWeight: 900,
+                color: "#003060",
+              }}
+            >
               よくある質問
             </h2>
           </div>
 
-          <div style={{ display: "grid", gap: 15 }}>
+          <div style={{ display: "grid", gap: 16 }}>
             {[
               {
                 q: "指定自動車学校との違いは？",
@@ -787,23 +1220,24 @@ export default function Home() {
               <details
                 key={idx}
                 style={{
-                  background: "white",
-                  padding: 20,
-                  borderRadius: 14,
-                  border: "1px solid #d9edf9",
+                  background: "#f8f9fa",
+                  padding: 24,
+                  borderRadius: 16,
+                  border: "none",
                   cursor: "pointer",
+                  boxShadow: "0 4px 12px rgba(0,48,96,0.06)",
                 }}
               >
                 <summary
                   style={{
-                    fontWeight: 700,
-                    color: "#006eb8",
+                    fontWeight: 900,
+                    color: "#003060",
                     fontSize: 16,
                     listStyle: "none",
                     userSelect: "none",
                   }}
                 >
-                  <span style={{ display: "inline-block", marginRight: 10 }}>
+                  <span style={{ display: "inline-block", marginRight: 10, fontSize: 18 }}>
                     Q.
                   </span>
                   {faq.q}
@@ -811,13 +1245,14 @@ export default function Home() {
 
                 <p
                   style={{
-                    marginTop: 15,
+                    marginTop: 16,
                     marginBottom: 0,
-                    color: "#555",
+                    color: "#666",
                     lineHeight: 1.8,
                   }}
                 >
-                  <strong style={{ color: "#0075c9" }}>A.</strong> {faq.a}
+                  <strong style={{ color: "#0068b7", fontSize: 16 }}>A.</strong>{" "}
+                  {faq.a}
                 </p>
               </details>
             ))}
