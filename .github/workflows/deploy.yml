@@ -37,70 +37,82 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build static site
+      # 現在のホームページをビルド
+      - name: Build application
         run: pnpm build
 
-      - name: Prepare GitHub Pages files
+      # vinextの開発サーバーを起動して
+      # 実際にブラウザへ返されるHTMLを取得する
+      - name: Start vinext server
         shell: bash
         run: |
           set -e
 
-          echo "===== BUILD OUTPUT ====="
-          find dist -maxdepth 5 -type f | sort
-          echo "========================"
+          nohup pnpm exec vinext dev \
+            --host 127.0.0.1 \
+            --port 3000 \
+            > /tmp/vinext.log 2>&1 &
+
+          echo $! > /tmp/vinext.pid
+
+          echo "Waiting for vinext server..."
+
+          for i in {1..60}; do
+            if curl -fsS \
+              "http://127.0.0.1:3000/sapporo-driving-support/" \
+              -o /tmp/homepage.html; then
+
+              echo "Homepage is ready."
+              break
+            fi
+
+            sleep 2
+          done
+
+          if [ ! -s /tmp/homepage.html ]; then
+            echo "ERROR: vinext server did not return homepage."
+            echo ""
+            echo "===== vinext.log ====="
+            cat /tmp/vinext.log || true
+            echo "======================"
+            exit 1
+          fi
+
+          echo "Homepage HTML received."
+          head -c 500 /tmp/homepage.html
+
+      # GitHub Pages用ファイルを作る
+      - name: Prepare GitHub Pages
+        shell: bash
+        run: |
+          set -e
 
           rm -rf pages
           mkdir -p pages
 
-          # vinext with basePath generates the site under:
-          # dist/client/sapporo-driving-support/
-          #
-          # The GitHub Pages repository root must have index.html.
-          # Therefore copy the generated site and promote the homepage.
+          # ホームページ
+          cp /tmp/homepage.html pages/index.html
 
-          if [ -f "dist/client/sapporo-driving-support/index.html" ]; then
-            echo "Found trailing-slash homepage."
-
-            cp -R "dist/client/sapporo-driving-support/." pages/
-
-            mkdir -p pages/sapporo-driving-support
-            cp -R "dist/client/sapporo-driving-support/." \
-              pages/sapporo-driving-support/
-
-          elif [ -f "dist/client/sapporo-driving-support.html" ]; then
-            echo "Found basePath homepage HTML."
-
+          # 静的ファイル
+          if [ -d "dist/client" ]; then
             cp -R dist/client/. pages/
-
-            cp "dist/client/sapporo-driving-support.html" \
-              pages/index.html
-
-          else
-            echo "ERROR: Homepage HTML was not found."
-            echo ""
-            echo "Generated files:"
-            find dist -type f | sort
-            exit 1
           fi
 
-          # Make sure the public basePath directory remains available.
-          if [ -d "dist/client/sapporo-driving-support" ]; then
-            rm -rf pages/sapporo-driving-support
-            mkdir -p pages/sapporo-driving-support
-            cp -R "dist/client/sapporo-driving-support/." \
-              pages/sapporo-driving-support/
+          # 画像
+          if [ -f "public/IMG_0173.jpeg" ]; then
+            cp public/IMG_0173.jpeg pages/IMG_0173.jpeg
           fi
 
+          # GitHub PagesではJekyllを無効化
           touch pages/.nojekyll
 
           echo ""
-          echo "===== GITHUB PAGES OUTPUT ====="
+          echo "===== GitHub Pages files ====="
           find pages -maxdepth 4 -type f | sort
-          echo "================================"
+          echo "=============================="
 
           test -f pages/index.html
 
-          echo ""
           echo "SUCCESS: pages/index.html exists."
 
       - name: Upload GitHub Pages artifact
