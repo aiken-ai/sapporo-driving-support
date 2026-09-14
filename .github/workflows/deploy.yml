@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,21 +36,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build site
+      - name: Build static site
         run: pnpm build
 
-      - name: Start production server
+      - name: Verify static output
         run: |
-          pnpm exec vinext start -H 127.0.0.1 -p 3000 > /tmp/vinext.log 2>&1 &
-          for i in {1..30}; do
-            if curl -fsS http://127.0.0.1:3000/sapporo-driving-support/ >/dev/null; then
-              break
-            fi
-            sleep 1
-          done
-
-      - name: Generate static homepage
-        run: curl -fsS http://127.0.0.1:3000/sapporo-driving-support/ -o dist/client/sapporo-driving-support/index.html
+          test -f dist/client/sapporo-driving-support/index.html
+          echo "Static homepage found"
 
       - name: Add .nojekyll
         run: touch dist/client/sapporo-driving-support/.nojekyll
@@ -65,6 +58,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
