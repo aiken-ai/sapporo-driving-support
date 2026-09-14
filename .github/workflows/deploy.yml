@@ -41,16 +41,16 @@ jobs:
 
       - name: Verify static output
         run: |
-          test -f dist/client/sapporo-driving-support/index.html
+          test -f dist/client/index.html
           echo "Static homepage found"
 
       - name: Add .nojekyll
-        run: touch dist/client/sapporo-driving-support/.nojekyll
+        run: touch dist/client/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/client/sapporo-driving-support
+          path: dist/client
 
   deploy:
     environment:
