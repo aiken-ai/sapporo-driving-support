@@ -37,51 +37,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 現在のホームページをビルド
-      - name: Build application
+      - name: Build static site
         run: pnpm build
 
-      # vinextの開発サーバーを起動して
-      # 実際にブラウザへ返されるHTMLを取得する
-      - name: Start vinext server
-        shell: bash
-        run: |
-          set -e
-
-          nohup pnpm exec vinext dev \
-            --host 127.0.0.1 \
-            --port 3000 \
-            > /tmp/vinext.log 2>&1 &
-
-          echo $! > /tmp/vinext.pid
-
-          echo "Waiting for vinext server..."
-
-          for i in {1..60}; do
-            if curl -fsS \
-              "http://127.0.0.1:3000/sapporo-driving-support/" \
-              -o /tmp/homepage.html; then
-
-              echo "Homepage is ready."
-              break
-            fi
-
-            sleep 2
-          done
-
-          if [ ! -s /tmp/homepage.html ]; then
-            echo "ERROR: vinext server did not return homepage."
-            echo ""
-            echo "===== vinext.log ====="
-            cat /tmp/vinext.log || true
-            echo "======================"
-            exit 1
-          fi
-
-          echo "Homepage HTML received."
-          head -c 500 /tmp/homepage.html
-
-      # GitHub Pages用ファイルを作る
       - name: Prepare GitHub Pages
         shell: bash
         run: |
@@ -90,30 +48,26 @@ jobs:
           rm -rf pages
           mkdir -p pages
 
-          # ホームページ
-          cp /tmp/homepage.html pages/index.html
+          echo "===== dist/client ====="
+          find dist/client -type f | sort
+          echo "======================"
 
-          # 静的ファイル
-          if [ -d "dist/client" ]; then
-            cp -R dist/client/. pages/
+          test -d dist/client
+          test -f dist/client/index.html
+
+          cp -R dist/client/. pages/
+
+          if [ -d public ]; then
+            cp -R public/. pages/
           fi
 
-          # 画像
-          if [ -f "public/IMG_0173.jpeg" ]; then
-            cp public/IMG_0173.jpeg pages/IMG_0173.jpeg
-          fi
-
-          # GitHub PagesではJekyllを無効化
           touch pages/.nojekyll
 
-          echo ""
-          echo "===== GitHub Pages files ====="
-          find pages -maxdepth 4 -type f | sort
-          echo "=============================="
+          echo "===== GitHub Pages ====="
+          find pages -type f | sort
+          echo "======================="
 
           test -f pages/index.html
-
-          echo "SUCCESS: pages/index.html exists."
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
