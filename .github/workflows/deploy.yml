@@ -52,10 +52,10 @@ jobs:
           find dist/client -type f | sort
           echo "======================"
 
-          test -d dist/client
-          test -f dist/client/index.html
+          test -d dist/client/sapporo-driving-support
+          test -f dist/client/sapporo-driving-support/index.html
 
-          cp -R dist/client/. pages/
+          cp -R dist/client/sapporo-driving-support/. pages/
 
           if [ -d public ]; then
             cp -R public/. pages/
