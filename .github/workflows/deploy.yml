@@ -46,57 +46,38 @@ jobs:
           set -e
 
           rm -rf pages
-          mkdir -p pages/sapporo-driving-support
+          mkdir -p pages
 
           echo "===== Build output ====="
           find dist/client -type f | sort
           echo "========================"
 
-          if [ -d dist/client/sapporo-driving-support ]; then
-            cp -R dist/client/sapporo-driving-support/. pages/sapporo-driving-support/
+          # vinextの静的ビルド結果をGitHub Pagesのルートへコピー
+          if [ -d "dist/client/sapporo-driving-support" ]; then
+            cp -R dist/client/sapporo-driving-support/. pages/
+          else
+            cp -R dist/client/. pages/
           fi
 
-          find dist/client -maxdepth 1 -type f \
-            -exec cp {} pages/sapporo-driving-support/ \;
-
-          if [ -d public ]; then
-            cp -R public/. pages/sapporo-driving-support/
+          # publicフォルダの画像などをコピー
+          if [ -d "public" ]; then
+            cp -Rn public/. pages/ || true
           fi
 
-          nohup pnpm exec vinext start \
-            -H 127.0.0.1 \
-            -p 3000 \
-            > /tmp/vinext.log 2>&1 &
+          # 404ページ
+          if [ -f "dist/client/404.html" ] && [ ! -f "pages/404.html" ]; then
+            cp "dist/client/404.html" "pages/404.html"
+          fi
 
-          SERVER_PID=$!
-
-          cleanup() {
-            kill "$SERVER_PID" 2>/dev/null || true
-          }
-          trap cleanup EXIT
-
-          echo "Waiting for vinext production server..."
-
-          for i in $(seq 1 30); do
-            if curl -fsS \
-              "http://127.0.0.1:3000/sapporo-driving-support/" \
-              -o pages/sapporo-driving-support/index.html; then
-              break
-            fi
-            sleep 1
-          done
-
-          echo "===== vinext log ====="
-          cat /tmp/vinext.log || true
-          echo "======================"
-
-          test -s pages/sapporo-driving-support/index.html
-
+          # Jekyllを無効化
           touch pages/.nojekyll
 
-          echo "===== GitHub Pages ====="
+          echo "===== GitHub Pages artifact ====="
           find pages -type f | sort
-          echo "========================"
+          echo "================================="
+
+          # index.htmlが存在することを確認
+          test -s pages/index.html
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
