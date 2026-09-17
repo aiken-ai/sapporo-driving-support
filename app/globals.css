@@ -8,3 +8,248 @@
 .experience-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.experience-tags span{padding:6px 10px;border-radius:99px;background:#fff;color:var(--green);font-size:11px;font-weight:800}.license-types{background:#fff}.license-type-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.license-type-grid article{padding:38px;border:1px solid var(--line);border-radius:24px;background:var(--cream)}.license-type-grid article>span{display:inline-block;padding:7px 12px;border-radius:99px;background:var(--green);color:#fff;font-size:12px;font-weight:800}.license-type-grid .second-class{background:#eaf2f5}.license-type-grid .second-class>span{background:#225f70}.license-type-grid h3{margin:22px 0 14px;font-size:26px}.license-type-grid p{color:#587068;line-height:1.9}.license-type-grid ul{padding-left:1.3em;color:#435f56;line-height:2}.official-note{margin:24px 0 0;padding:18px 21px;border-radius:14px;background:#eef3ec;color:#587068;font-size:12px;line-height:1.8}.official-note a{color:var(--green);font-weight:800;text-decoration:underline;text-underline-offset:3px}.motorcycle-page .detail-hero{background:linear-gradient(90deg,#203d37f2,#386e5fc7),url('/og.png') center 64%/cover}.motorcycle-skills{background:#edf3ef}
 @media(max-width:800px){.license-type-grid{grid-template-columns:1fr}.license-type-grid article{padding:28px 24px}.experience-tags{justify-content:flex-start}}
 @media(max-width:480px){.experience-tags{justify-content:center}}
+
+/* =========================================================
+   札幌ドライビングサポート
+   青・白デザイン復元
+   ========================================================= */
+
+:root{
+  --ink:#0b3155;
+  --green:#0068b7;
+  --dark:#003060;
+  --mint:#eef7ff;
+  --cream:#f8fbff;
+  --gold:#ffd400;
+  --line:#d7e6f3;
+}
+
+body{
+  background:var(--cream);
+  color:var(--ink);
+}
+
+.site-header{
+  background:#ffffffee;
+  border-bottom-color:#0068b726;
+}
+
+.brand-mark{
+  background:#0068b7;
+}
+
+.brand b{
+  color:#0068b7;
+}
+
+.nav-cta{
+  background:#ffd400;
+  color:#003060;
+}
+
+.mobile-menu>div{
+  box-shadow:0 18px 45px #00306025;
+}
+
+.hero-image{
+  background:url('/IMG_0173.jpeg') 57% center/cover;
+}
+
+.hero-shade{
+  background:linear-gradient(
+    90deg,
+    #003060d9,
+    #0068b78c 38%,
+    #0068b71a 72%
+  );
+}
+
+.hero-eyebrow{
+  color:#dff2ff;
+}
+
+.button-primary{
+  background:#ffd400;
+  color:#003060;
+}
+
+.fee-ribbon{
+  background:#003060;
+}
+
+.fee-ribbon span{
+  color:#dceeff;
+}
+
+.fee-ribbon em{
+  color:#ffd400;
+}
+
+.section-heading p:last-child,
+.contact-panel>div>p:last-child{
+  color:#536f89;
+}
+
+.service-card{
+  border-color:#d7e6f3;
+}
+
+.service-icon{
+  background:#e8f4ff;
+  color:#0068b7;
+}
+
+.support-section{
+  background:#003060;
+}
+
+.split .eyebrow{
+  color:#a9dcff;
+}
+
+.large-copy{
+  color:#d8ecfb;
+}
+
+.promise-list p{
+  color:#c8e0f2;
+}
+
+.profile-slot{
+  background:#f0f7fc;
+}
+
+.profile-placeholder{
+  border-color:#9dbbd2;
+}
+
+.profile-mark{
+  color:#0068b7;
+}
+
+.profile-placeholder>span{
+  background:#e3f0fa;
+}
+
+.contact-section{
+  background:#eef7ff;
+}
+
+.reserve{
+  background:#003060;
+}
+
+footer{
+  background:#00294f;
+  color:#d8ebfa;
+}
+
+/* 下層ページ */
+.detail-hero{
+  background:
+    linear-gradient(90deg,#003060f2,#0068b7d1),
+    url('/IMG_0173.jpeg') center 52%/cover;
+}
+
+.paper-page .detail-hero{
+  background:
+    linear-gradient(90deg,#003060f0,#0068b7c7),
+    url('/IMG_0173.jpeg') center 72%/cover;
+}
+
+.motorcycle-page .detail-hero{
+  background:
+    linear-gradient(90deg,#003060f2,#0068b7c7),
+    url('/IMG_0173.jpeg') center 64%/cover;
+}
+
+.detail-hero .eyebrow{
+  color:#c7e9ff;
+}
+
+.notice{
+  background:#eef7ff;
+}
+
+.steps-section{
+  background:#f0f7fc;
+}
+
+.step-list{
+  background:#c5dbea;
+}
+
+.step-list article>span{
+  color:#0068b7;
+}
+
+.benefit-grid svg,
+.scene-grid svg{
+  color:#0068b7;
+}
+
+.lesson-scenes{
+  background:#eef7ff;
+}
+
+.route-strip{
+  background:#dceffc;
+}
+
+.route-strip svg{
+  color:#0068b7;
+}
+
+.mini-cta{
+  background:#003060;
+}
+
+.license-types{
+  background:#ffffff;
+}
+
+.license-type-grid article{
+  background:#f8fbff;
+  border-color:#d7e6f3;
+}
+
+.license-type-grid article>span{
+  background:#0068b7;
+}
+
+.license-type-grid .second-class{
+  background:#eef7ff;
+}
+
+.official-note{
+  background:#eef5fb;
+}
+
+.official-note a{
+  color:#0068b7;
+}
+
+.motorcycle-skills{
+  background:#eef7ff;
+}
+
+.experience-tags span{
+  background:#ffffff;
+  color:#0068b7;
+}
+
+@media(max-width:800px){
+  .hero-shade{
+    background:
+      linear-gradient(
+        0deg,
+        #003060ed,
+        #00306099 47%,
+        #00306018 78%
+      );
+  }
+
+  .hero-image{
+    background-position:62% center;
+  }
+}
